@@ -1,0 +1,52 @@
+/* Price change animations */
+@keyframes priceUp {
+  0% { background-color: transparent; }
+  50% { background-color: rgba(16, 185, 129, 0.2); }
+  100% { background-color: transparent; }
+}
+
+@keyframes priceDown {
+  0% { background-color: transparent; }
+  50% { background-color: rgba(239, 68, 68, 0.2); }
+  100% { background-color: transparent; }
+}
+
+.price-up {
+  animation: priceUp 0.6s ease-in-out;
+}
+
+.price-down {
+  animation: priceDown 0.6s ease-in-out;
+}
+
+/* Live badge pulse animation */
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.live-pulse {
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+/* Sparkline hover effects */
+.sparkline-container:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .asset-button {
+    min-width: 100px;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .asset-button .price-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}

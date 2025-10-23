@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Menu, Zap, Trophy, BarChart3, Settings, Database } from "lucide-react";
+import { Menu, Zap, Trophy, BarChart3, Settings } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link, useLocation } from "react-router-dom";
+import { WalletConnect } from "./WalletConnect";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -14,7 +15,7 @@ export const Navbar = () => {
     { path: "/", label: "Dashboard", icon: <BarChart3 className="w-4 h-4" /> },
     { path: "/leaderboard", label: "Leaderboard", icon: <Trophy className="w-4 h-4" /> },
     { path: "/builder", label: "Builder", icon: <Zap className="w-4 h-4" /> },
-    { path: "/settings/export", label: "Export", icon: <Database className="w-4 h-4" /> },
+    { path: "/settings", label: "Settings", icon: <Settings className="w-4 h-4" /> },
   ];
 
   return (
@@ -55,6 +56,7 @@ export const Navbar = () => {
               <Settings className="w-4 h-4 mr-2" />
               Settings
             </Button>
+            <WalletConnect />
             <Link to="/builder">
               <Button size="sm" className="glow-primary">
                 <Zap className="w-4 h-4 mr-2" />
@@ -92,6 +94,9 @@ export const Navbar = () => {
                     <Settings className="w-4 h-4 mr-2" />
                     Settings
                   </Button>
+                  <div className="w-full">
+                    <WalletConnect />
+                  </div>
                   <Link to="/builder" onClick={() => setOpen(false)}>
                     <Button className="w-full justify-start glow-primary">
                       <Zap className="w-4 h-4 mr-2" />

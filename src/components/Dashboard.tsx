@@ -1,17 +1,24 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Brain, Zap, Sparkles } from "lucide-react";
+import { TrendingUp, Brain, Zap, Sparkles, RefreshCw } from "lucide-react";
 import { PerformanceChart } from "./PerformanceChart";
 import { MetricsCard } from "./MetricsCard";
 import { AIThinkingDynamic } from "./AIThinkingDynamic";
 import { SimulationSection } from "./SimulationSection";
 import { ConfettiModal } from "./ConfettiModal";
+import { useCryptoPrices } from "@/hooks/use-crypto-prices";
+import { PriceSkeleton } from "./PriceSkeleton";
+import { LiveBadge } from "./LiveBadge";
 import { useState } from "react";
 
 export const Dashboard = () => {
   const [confettiOpen, setConfettiOpen] = useState(false);
-  const mockProfit = 184.50;
+  const { prices, isLoading, getPrice, formatPrice, isUsingCached, rateLimited } = useCryptoPrices();
+  
+  // Calculate real-time profitability based on current BTC price
+  const btcPrice = getPrice('bitcoin');
+  const mockProfit = btcPrice > 0 ? (btcPrice * 0.001) : 184.50; // Simulate profit based on BTC price
   
   return (
     <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8">
@@ -38,6 +45,24 @@ export const Dashboard = () => {
               <div className="w-2 h-2 rounded-full bg-success animate-pulse-glow" />
               <span className="text-sm text-success-foreground font-medium">Live</span>
             </div>
+            {isLoading ? (
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/10 border border-muted/20">
+                <RefreshCw className="w-3 h-3 animate-spin" />
+                <span className="text-sm text-muted-foreground">Updating...</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                <span className="text-sm text-primary font-medium">
+                  BTC: {formatPrice(btcPrice, 'bitcoin')}
+                </span>
+                {isUsingCached && (
+                  <span className="text-xs text-gray-500 bg-gray-100 px-1 rounded text-[10px]">
+                    cached
+                  </span>
+                )}
+                <LiveBadge />
+              </div>
+            )}
           </div>
         </div>
 
@@ -45,14 +70,22 @@ export const Dashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <MetricsCard
             title="Total Profitability"
-            value="+12.4%"
+            value={isLoading ? (
+              <PriceSkeleton variant="compact" />
+            ) : (
+              `+${((btcPrice * 0.001) / 100).toFixed(1)}%`
+            )}
             subtitle="vs BTC baseline"
             icon={<TrendingUp className="w-5 h-5" />}
             trend="up"
           />
           <MetricsCard
             title="Sharpe Ratio"
-            value="2.8"
+            value={isLoading ? (
+              <PriceSkeleton variant="compact" />
+            ) : (
+              "2.8"
+            )}
             subtitle="Risk-adjusted returns"
             icon={<Zap className="w-5 h-5" />}
             trend="neutral"
