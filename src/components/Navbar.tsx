@@ -13,6 +13,7 @@ export const Navbar = () => {
   const navItems = [
     { path: "/", label: "Dashboard", icon: <BarChart3 className="w-4 h-4" /> },
     { path: "/leaderboard", label: "Leaderboard", icon: <Trophy className="w-4 h-4" /> },
+    { path: "/builder", label: "Builder", icon: <Zap className="w-4 h-4" /> },
   ];
 
   return (
@@ -53,10 +54,12 @@ export const Navbar = () => {
               <Settings className="w-4 h-4 mr-2" />
               Settings
             </Button>
-            <Button size="sm" className="glow-primary">
-              <Zap className="w-4 h-4 mr-2" />
-              Create Bot
-            </Button>
+            <Link to="/builder">
+              <Button size="sm" className="glow-primary">
+                <Zap className="w-4 h-4 mr-2" />
+                Create Bot
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu */}
@@ -88,10 +91,12 @@ export const Navbar = () => {
                     <Settings className="w-4 h-4 mr-2" />
                     Settings
                   </Button>
-                  <Button className="w-full justify-start glow-primary">
-                    <Zap className="w-4 h-4 mr-2" />
-                    Create Bot
-                  </Button>
+                  <Link to="/builder" onClick={() => setOpen(false)}>
+                    <Button className="w-full justify-start glow-primary">
+                      <Zap className="w-4 h-4 mr-2" />
+                      Create Bot
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </SheetContent>

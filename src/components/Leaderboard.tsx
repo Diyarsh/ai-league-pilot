@@ -19,7 +19,7 @@ import {
 import { Trophy, TrendingUp, Zap, Swords, ArrowUpDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { BotDetailsModal } from "./BotDetailsModal";
+import { BotDetailsModalEnhanced } from "./BotDetailsModalEnhanced";
 import { BattleModal } from "./BattleModal";
 
 interface BotData {
@@ -46,6 +46,27 @@ export const Leaderboard = () => {
   
   useEffect(() => {
     fetchBots();
+    
+    // Subscribe to real-time updates
+    const channel = supabase
+      .channel('bots-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'bots'
+        },
+        (payload) => {
+          console.log('Bot change detected:', payload);
+          fetchBots(); // Refresh data on any change
+        }
+      )
+      .subscribe();
+    
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [sortBy, filterStrategy, minProfitability]);
   
   const fetchBots = async () => {
@@ -123,7 +144,7 @@ export const Leaderboard = () => {
               F1-style rankings • Live competition • Top performers
             </p>
           </div>
-          <Button className="bg-primary hover:bg-primary/90 glow-primary">
+          <Button className="bg-primary hover:bg-primary/90 glow-primary" onClick={() => window.location.href = '/builder'}>
             <Zap className="w-4 h-4 mr-2" />
             Create Your Bot
           </Button>
@@ -273,7 +294,7 @@ export const Leaderboard = () => {
         </Card>
         
         {/* Modals */}
-        <BotDetailsModal
+        <BotDetailsModalEnhanced
           open={detailsOpen}
           onOpenChange={setDetailsOpen}
           bot={selectedBot}

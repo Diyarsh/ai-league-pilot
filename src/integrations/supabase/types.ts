@@ -50,6 +50,47 @@ export type Database = {
         }
         Relationships: []
       }
+      trades: {
+        Row: {
+          amount: number
+          asset: string
+          bot_id: string
+          created_at: string
+          id: string
+          price: number
+          side: string
+          timestamp: string
+        }
+        Insert: {
+          amount: number
+          asset: string
+          bot_id: string
+          created_at?: string
+          id?: string
+          price: number
+          side: string
+          timestamp?: string
+        }
+        Update: {
+          amount?: number
+          asset?: string
+          bot_id?: string
+          created_at?: string
+          id?: string
+          price?: number
+          side?: string
+          timestamp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trades_bot_id_fkey"
+            columns: ["bot_id"]
+            isOneToOne: false
+            referencedRelation: "bots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

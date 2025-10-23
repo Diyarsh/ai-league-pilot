@@ -39,13 +39,20 @@ export const ConfettiModal = ({ open, onOpenChange, profit }: ConfettiModalProps
           {confettiPieces.map((i) => (
             <div
               key={i}
-              className="absolute w-2 h-2 animate-confetti"
+              className="absolute w-3 h-3 animate-confetti rounded-sm"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: '-10px',
-                backgroundColor: ['hsl(var(--primary))', 'hsl(var(--success))', 'hsl(var(--accent))'][i % 3],
+                backgroundColor: [
+                  'hsl(var(--primary))', 
+                  'hsl(var(--success))', 
+                  'hsl(var(--accent))',
+                  'hsl(var(--primary-glow))',
+                  'hsl(var(--success-glow))'
+                ][i % 5],
                 animationDelay: `${Math.random() * 0.5}s`,
                 animationDuration: `${2 + Math.random()}s`,
+                transform: `rotate(${Math.random() * 360}deg)`,
               }}
             />
           ))}

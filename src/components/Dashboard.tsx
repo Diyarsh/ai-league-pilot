@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { TrendingUp, Brain, Zap, Sparkles } from "lucide-react";
 import { PerformanceChart } from "./PerformanceChart";
 import { MetricsCard } from "./MetricsCard";
-import { AIThinking } from "./AIThinking";
+import { AIThinkingDynamic } from "./AIThinkingDynamic";
 import { SimulationSection } from "./SimulationSection";
 import { ConfettiModal } from "./ConfettiModal";
 import { useState } from "react";
@@ -75,7 +75,7 @@ export const Dashboard = () => {
 
           {/* AI Thinking Sidebar */}
           <div className="lg:col-span-1">
-            <AIThinking />
+            <AIThinkingDynamic />
           </div>
         </div>
         
