@@ -1,11 +1,18 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Brain, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { TrendingUp, Brain, Zap, Sparkles } from "lucide-react";
 import { PerformanceChart } from "./PerformanceChart";
 import { MetricsCard } from "./MetricsCard";
 import { AIThinking } from "./AIThinking";
+import { SimulationSection } from "./SimulationSection";
+import { ConfettiModal } from "./ConfettiModal";
+import { useState } from "react";
 
 export const Dashboard = () => {
+  const [confettiOpen, setConfettiOpen] = useState(false);
+  const mockProfit = 184.50;
+  
   return (
     <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -20,6 +27,13 @@ export const Dashboard = () => {
             </p>
           </div>
           <div className="flex items-center gap-2">
+            <Button
+              onClick={() => setConfettiOpen(true)}
+              className="bg-success hover:bg-success/90 glow-success text-success-foreground"
+            >
+              <Sparkles className="w-4 h-4 mr-2" />
+              Fix Profit
+            </Button>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-success/10 border border-success/20">
               <div className="w-2 h-2 rounded-full bg-success animate-pulse-glow" />
               <span className="text-sm text-success-foreground font-medium">Live</span>
@@ -64,6 +78,16 @@ export const Dashboard = () => {
             <AIThinking />
           </div>
         </div>
+        
+        {/* Simulation Section */}
+        <SimulationSection />
+        
+        {/* Confetti Modal */}
+        <ConfettiModal
+          open={confettiOpen}
+          onOpenChange={setConfettiOpen}
+          profit={mockProfit}
+        />
       </div>
     </div>
   );
