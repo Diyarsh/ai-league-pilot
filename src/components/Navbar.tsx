@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Menu, Zap, Trophy, BarChart3, Settings } from "lucide-react";
+import { Menu, Zap, Trophy, BarChart3, Settings, Database } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link, useLocation } from "react-router-dom";
@@ -14,6 +14,7 @@ export const Navbar = () => {
     { path: "/", label: "Dashboard", icon: <BarChart3 className="w-4 h-4" /> },
     { path: "/leaderboard", label: "Leaderboard", icon: <Trophy className="w-4 h-4" /> },
     { path: "/builder", label: "Builder", icon: <Zap className="w-4 h-4" /> },
+    { path: "/settings/export", label: "Export", icon: <Database className="w-4 h-4" /> },
   ];
 
   return (

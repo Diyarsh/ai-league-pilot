@@ -7,6 +7,7 @@ import { Navbar } from "@/components/Navbar";
 import Index from "./pages/Index";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import PromptBuilderPageDnD from "./pages/PromptBuilderPageDnD";
+import ExportPage from "./pages/ExportPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />
           <Route path="/builder" element={<PromptBuilderPageDnD />} />
+          <Route path="/settings/export" element={<ExportPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
