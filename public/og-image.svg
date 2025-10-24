@@ -1,0 +1,44 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Main title -->
+  <text x="600" y="200" text-anchor="middle" fill="url(#textGradient)" font-family="Inter, sans-serif" font-size="72" font-weight="700">
+    AI-League
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="280" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="32" font-weight="400">
+    AI-Powered Crypto Trading Platform
+  </text>
+  
+  <!-- Features -->
+  <text x="600" y="350" text-anchor="middle" fill="#a1a1aa" font-family="Inter, sans-serif" font-size="24" font-weight="400">
+    Create AI Bots • Simulate Trades • Live Trading
+  </text>
+  
+  <!-- Decorative elements -->
+  <circle cx="200" cy="150" r="4" fill="#3b82f6" opacity="0.6"/>
+  <circle cx="1000" cy="480" r="6" fill="#8b5cf6" opacity="0.4"/>
+  <circle cx="150" cy="500" r="3" fill="#06b6d4" opacity="0.5"/>
+  <circle cx="1050" cy="200" r="5" fill="#3b82f6" opacity="0.3"/>
+  
+  <!-- Trading chart mockup -->
+  <path d="M 300 450 Q 400 400 500 450 T 700 400" stroke="#3b82f6" stroke-width="3" fill="none" opacity="0.8"/>
+  <path d="M 300 450 Q 400 400 500 450 T 700 400" stroke="#8b5cf6" stroke-width="2" fill="none" opacity="0.6" stroke-dasharray="5,5"/>
+</svg>
