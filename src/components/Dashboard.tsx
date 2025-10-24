@@ -7,7 +7,9 @@ import { MetricsCard } from "./MetricsCard";
 import { AIThinkingDynamic } from "./AIThinkingDynamic";
 import { SimulationSection } from "./SimulationSection";
 import { ConfettiModal } from "./ConfettiModal";
+import { PnLChart } from "./PnLChart";
 import { useCryptoPrices } from "@/hooks/use-crypto-prices";
+import { usePnLData } from "@/hooks/use-pnl-data";
 import { PriceSkeleton } from "./PriceSkeleton";
 import { LiveBadge } from "./LiveBadge";
 import { useState } from "react";
@@ -15,6 +17,7 @@ import { useState } from "react";
 export const Dashboard = () => {
   const [confettiOpen, setConfettiOpen] = useState(false);
   const { prices, isLoading, getPrice, formatPrice, isUsingCached, rateLimited } = useCryptoPrices();
+  const { data: pnlData, bots, isLoading: pnlLoading, error: pnlError } = usePnLData();
   
   // Calculate real-time profitability based on current BTC price
   const btcPrice = getPrice('bitcoin');
@@ -97,6 +100,33 @@ export const Dashboard = () => {
             icon={<Brain className="w-5 h-5" />}
             trend="neutral"
           />
+        </div>
+
+        {/* PnL Chart - Full width */}
+        <div className="mb-6">
+          {pnlLoading ? (
+            <Card className="p-6">
+              <div className="flex items-center justify-center h-[400px]">
+                <div className="text-center space-y-2">
+                  <RefreshCw className="w-8 h-8 animate-spin mx-auto text-muted-foreground" />
+                  <p className="text-sm text-muted-foreground">Loading PnL data...</p>
+                </div>
+              </div>
+            </Card>
+          ) : pnlError ? (
+            <Card className="p-6">
+              <div className="flex items-center justify-center h-[400px]">
+                <div className="text-center space-y-2">
+                  <p className="text-sm text-destructive">Error loading PnL data</p>
+                  <Button variant="outline" onClick={() => window.location.reload()}>
+                    Retry
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          ) : (
+            <PnLChart data={pnlData} bots={bots} />
+          )}
         </div>
 
         {/* Main Content Grid */}
