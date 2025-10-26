@@ -115,12 +115,7 @@ export const SimulationSection = () => {
     <Card className="glass-card p-6 space-y-6 animate-fade-in">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <h2 className="text-xl font-bold">Simulation: What If?</h2>
-            {!isLoading && lastUpdate && (
-              <LiveBadge />
-            )}
-          </div>
+          <h2 className="text-xl font-bold mb-1">Simulation: What If?</h2>
           <p className="text-sm text-muted-foreground">Test strategies risk-free with real-time data</p>
         </div>
       </div>
@@ -169,11 +164,6 @@ export const SimulationSection = () => {
                       } ${isPositive ? 'price-up' : 'price-down'}`}>
                         {formatPrice(currentPrice, asset.id)}
                       </span>
-                      {isUsingCached && (
-                        <span className="text-xs text-gray-500 bg-gray-100 px-1 rounded text-[10px]">
-                          cached
-                        </span>
-                      )}
                     </div>
                   )}
                 </div>
@@ -191,11 +181,6 @@ export const SimulationSection = () => {
                         />
                       </div>
                     )}
-                  </div>
-                )}
-                {isUsingCached && (
-                  <div className="text-xs text-gray-500 text-[10px]">
-                    Using cached data
                   </div>
                 )}
               </Button>

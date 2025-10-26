@@ -52,10 +52,6 @@ export const Navbar = () => {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="outline" size="sm">
-              <Settings className="w-4 h-4 mr-2" />
-              Settings
-            </Button>
             <WalletConnect />
             <Link to="/builder">
               <Button size="sm" className="glow-primary">
@@ -90,10 +86,6 @@ export const Navbar = () => {
                   </Link>
                 ))}
                 <div className="pt-6 border-t border-border space-y-3">
-                  <Button variant="outline" className="w-full justify-start">
-                    <Settings className="w-4 h-4 mr-2" />
-                    Settings
-                  </Button>
                   <div className="w-full">
                     <WalletConnect />
                   </div>
