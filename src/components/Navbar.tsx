@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link, useLocation } from "react-router-dom";
 import { WalletConnect } from "./WalletConnect";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -15,7 +17,6 @@ export const Navbar = () => {
     { path: "/", label: "Dashboard", icon: <BarChart3 className="w-4 h-4" /> },
     { path: "/leaderboard", label: "Leaderboard", icon: <Trophy className="w-4 h-4" /> },
     { path: "/builder", label: "Builder", icon: <Zap className="w-4 h-4" /> },
-    { path: "/submit", label: "Submit", icon: <Trophy className="w-4 h-4" /> },
     { path: "/settings", label: "Settings", icon: <Settings className="w-4 h-4" /> },
   ];
 
@@ -54,6 +55,15 @@ export const Navbar = () => {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
             <WalletConnect />
+            {(() => {
+              const { connected } = useWallet();
+              const { setVisible } = useWalletModal();
+              return connected ? (
+                <Button variant="outline" size="sm" onClick={() => setVisible(true)}>
+                  Change Wallet
+                </Button>
+              ) : null;
+            })()}
           </div>
 
           {/* Mobile Menu */}
@@ -82,6 +92,15 @@ export const Navbar = () => {
                 ))}
                 <div className="pt-6 border-t border-border space-y-3">
                   <WalletConnect />
+                  {(() => {
+                    const { connected } = useWallet();
+                    const { setVisible } = useWalletModal();
+                    return connected ? (
+                      <Button className="w-full" variant="outline" onClick={() => setVisible(true)}>
+                        Change Wallet
+                      </Button>
+                    ) : null;
+                  })()}
                 </div>
               </div>
             </SheetContent>
