@@ -3,6 +3,7 @@ import { Menu, Zap, Trophy, BarChart3, Settings } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link, useLocation } from "react-router-dom";
+import { WalletConnect } from "./WalletConnect";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -50,7 +51,9 @@ export const Navbar = () => {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-3" />
+          <div className="hidden md:flex items-center gap-3">
+            <WalletConnect />
+          </div>
 
           {/* Mobile Menu */}
           <Sheet open={open} onOpenChange={setOpen}>
@@ -76,7 +79,9 @@ export const Navbar = () => {
                     {item.label}
                   </Link>
                 ))}
-                <div className="pt-6 border-t border-border space-y-3" />
+                <div className="pt-6 border-t border-border space-y-3">
+                  <WalletConnect />
+                </div>
               </div>
             </SheetContent>
           </Sheet>
