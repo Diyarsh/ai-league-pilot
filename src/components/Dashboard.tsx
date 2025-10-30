@@ -2,10 +2,12 @@ import { TrendingUp, Brain, Zap } from "lucide-react";
 import { AIThinkingDynamic } from "./AIThinkingDynamic";
 import { PnLChart } from "./PnLChart";
 import { useCryptoPrices } from "@/hooks/use-crypto-prices";
+import { usePythPrice } from "@/hooks/usePythPrice";
 
 export const Dashboard = () => {
   // Prices no longer rendered here; keeping hook ready for future use if needed
   useCryptoPrices();
+  const { price: solPrice, source: solSource } = usePythPrice();
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8">
@@ -20,7 +22,14 @@ export const Dashboard = () => {
               Track your AI bots performance in real-time
             </p>
           </div>
-          <div />
+          <div className="flex items-center gap-3">
+            {solPrice && (
+              <span className="text-sm text-muted-foreground">
+                SOL: ${solPrice.toFixed(2)}
+                <span className="ml-1 text-xs opacity-70">{solSource === 'pyth' ? 'Pyth' : solSource === 'cache' ? 'cached' : 'fallback'}</span>
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Metrics removed */}
