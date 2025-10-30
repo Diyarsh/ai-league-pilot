@@ -1,17 +1,11 @@
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Brain, Zap } from "lucide-react";
-import { MetricsCard } from "./MetricsCard";
 import { AIThinkingDynamic } from "./AIThinkingDynamic";
 import { PnLChart } from "./PnLChart";
 import { useCryptoPrices } from "@/hooks/use-crypto-prices";
-import { PriceSkeleton } from "./PriceSkeleton";
 
 export const Dashboard = () => {
-  const { prices, isLoading, getPrice, formatPrice } = useCryptoPrices();
-
-  // Calculate real-time profitability based on current BTC price
-  const btcPrice = getPrice('bitcoin');
+  // Prices no longer rendered here; keeping hook ready for future use if needed
+  useCryptoPrices();
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8">
@@ -29,52 +23,7 @@ export const Dashboard = () => {
           <div />
         </div>
 
-        {/* Metrics Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {isLoading ? (
-            <>
-              <Card className="glass-card p-6">
-                <div className="flex items-center justify-center h-[120px]">
-                  <PriceSkeleton variant="compact" />
-                </div>
-              </Card>
-              <Card className="glass-card p-6">
-                <div className="flex items-center justify-center h-[120px]">
-                  <PriceSkeleton variant="compact" />
-                </div>
-              </Card>
-              <Card className="glass-card p-6">
-                <div className="flex items-center justify-center h-[120px]">
-                  <PriceSkeleton variant="compact" />
-                </div>
-              </Card>
-            </>
-          ) : (
-            <>
-              <MetricsCard
-                title="Total Profitability"
-                value={`+${((btcPrice * 0.001) / 100).toFixed(1)}%`}
-                subtitle="vs BTC baseline"
-                icon={<TrendingUp className="w-5 h-5" />}
-                trend="up"
-              />
-              <MetricsCard
-                title="Sharpe Ratio"
-                value="2.8"
-                subtitle="Risk-adjusted returns"
-                icon={<Zap className="w-5 h-5" />}
-                trend="neutral"
-              />
-              <MetricsCard
-                title="AI Strategies"
-                value="12"
-                subtitle="Active bots running"
-                icon={<Brain className="w-5 h-5" />}
-                trend="neutral"
-              />
-            </>
-          )}
-        </div>
+        {/* Metrics removed */}
 
         {/* PnL Chart - Full width */}
         <div className="mb-6">
