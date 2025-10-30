@@ -10,6 +10,7 @@ import LeaderboardPage from "./pages/LeaderboardPage";
 import PromptBuilderPageDnD from "./pages/PromptBuilderPageDnD";
 import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
+import Submit from "./pages/Submit";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/builder" element={<PromptBuilderPageDnD />} />
             <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/submit" element={<Submit />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

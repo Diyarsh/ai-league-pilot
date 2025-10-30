@@ -15,6 +15,7 @@ export const Navbar = () => {
     { path: "/", label: "Dashboard", icon: <BarChart3 className="w-4 h-4" /> },
     { path: "/leaderboard", label: "Leaderboard", icon: <Trophy className="w-4 h-4" /> },
     { path: "/builder", label: "Builder", icon: <Zap className="w-4 h-4" /> },
+    { path: "/submit", label: "Submit", icon: <Trophy className="w-4 h-4" /> },
     { path: "/settings", label: "Settings", icon: <Settings className="w-4 h-4" /> },
   ];
 
