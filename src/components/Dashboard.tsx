@@ -4,6 +4,7 @@ import { PnLChart } from "./PnLChart";
 import { useCryptoPrices } from "@/hooks/use-crypto-prices";
 import { usePythPrice } from "@/hooks/usePythPrice";
 import { TradeButton } from "./TradeButton";
+import { ZkPrivacyBadge } from "./ZkPrivacyBadge";
 
 export const Dashboard = () => {
   // Prices no longer rendered here; keeping hook ready for future use if needed
@@ -30,6 +31,7 @@ export const Dashboard = () => {
                 <span className="ml-1 text-xs opacity-70">{solSource === 'pyth' ? 'Pyth' : solSource === 'cache' ? 'cached' : 'fallback'}</span>
               </span>
             )}
+            <ZkPrivacyBadge />
           </div>
         </div>
 
