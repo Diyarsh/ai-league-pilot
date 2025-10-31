@@ -3,9 +3,6 @@ import { Menu, Zap, Trophy, BarChart3, Settings } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link, useLocation } from "react-router-dom";
-import { WalletConnect } from "./WalletConnect";
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -52,18 +49,8 @@ export const Navbar = () => {
             ))}
           </div>
 
-          {/* Desktop Actions */}
+          {/* Desktop Actions - Removed wallet connect from header */}
           <div className="hidden md:flex items-center gap-3">
-            <WalletConnect />
-            {(() => {
-              const { connected } = useWallet();
-              const { setVisible } = useWalletModal();
-              return connected ? (
-                <Button variant="outline" size="sm" onClick={() => setVisible(true)}>
-                  Change Wallet
-                </Button>
-              ) : null;
-            })()}
           </div>
 
           {/* Mobile Menu */}
@@ -90,18 +77,7 @@ export const Navbar = () => {
                     {item.label}
                   </Link>
                 ))}
-                <div className="pt-6 border-t border-border space-y-3">
-                  <WalletConnect />
-                  {(() => {
-                    const { connected } = useWallet();
-                    const { setVisible } = useWalletModal();
-                    return connected ? (
-                      <Button className="w-full" variant="outline" onClick={() => setVisible(true)}>
-                        Change Wallet
-                      </Button>
-                    ) : null;
-                  })()}
-                </div>
+                {/* Wallet connect removed from mobile menu */}
               </div>
             </SheetContent>
           </Sheet>
